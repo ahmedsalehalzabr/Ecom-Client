@@ -1,2 +1,6 @@
 <app-nav-bar></app-nav-bar>
-<h1>Ecom - {{title}}</h1>
+<ul>
+    @for (item of Product; track $index){
+        <li>{{item.name}}</li>
+    }
+</ul>
