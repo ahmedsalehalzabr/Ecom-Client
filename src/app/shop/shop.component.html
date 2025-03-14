@@ -25,5 +25,27 @@
             </ul>
         </div>
         </section>
+        <section class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="paging-container">
+                    <span class="text-dark">showing 3 of 5</span>
+                </div>
+                <div class="search-container">
+                <div class="input-group search-bar">
+                    <input type="text" class="form-control"placeholder="Search...">
+                    <input type="button" class="btn btn-danger" value="Search">
+                    <input type="button" class="btn btn-dark" value="Reset">
+
+                </div>
+                </div>
+            </div>
+            <div class="row g-4">
+               <ng-container>
+                <!-- @for (item of product; track $index) { }-->
+                    <app-shop-item></app-shop-item>
+                
+               </ng-container>
+            </div>
+        </section>
     </div>
 </div>
