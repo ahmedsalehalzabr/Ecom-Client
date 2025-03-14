@@ -12,14 +12,16 @@ import { ICateogry } from '../shared/Models/Category';
 export class ShopComponent implements OnInit{
   product:IProduct[];
   Category: ICateogry[];
-  CategoryId:number
+  CategoryId:number;
+  SortSelected:string
+
   constructor(private shopService:ShopService){}
   ngOnInit(): void {
       this.getAllProduct();
       this.getCategory();
   }
 getAllProduct(){
-  this.shopService.getProduct(this.CategoryId).subscribe({
+  this.shopService.getProduct(this.CategoryId,this.SortSelected).subscribe({
     next:((value:IPagnation)=> {
           this.product=value.data
     })
@@ -36,5 +38,16 @@ getCategory() {
 SelectedId(categoryid:number){
   this.CategoryId=categoryid
   this.getAllProduct();
+}
+
+// Sorting by price
+SortingOption=[
+  {name:'Price',value:'Name'},
+  {name:'Price:min-max',value:'PriceAce'},
+  {name:'Price:max-min',value:'PriceDce'}
+]
+SortingByPrice(sort:Event){
+this.SortSelected=(sort.target as HTMLInputElement).value
+this.getAllProduct()
 }
 }

@@ -5,10 +5,10 @@
             <div class="sidebar">
                 <h4 class="section-title">Sorting</h4>
                 <div class="custom-select-wrapper mb-4">
-                    <select name="" id="" class="form-select">
-                        <option value="Name">Name</option>
-                        <option value="PriceAsn">Price:min-max</option>
-                        <option value="PriceAsn">Price:max-min</option>
+                    <select name="" id="" class="form-select" (change)="SortingByPrice($event)">
+                        @for (item of SortingOption;track $index) {
+                        <option [value]="item.value">{{item.name}}</option>
+                        }
                     </select>
                 </div>
             <h4 class="section-title">Categories</h4>
