@@ -40,11 +40,11 @@
                 </div>
             </div>
             <div class="row g-4">
-               <ng-container>
-                <!-- @for (item of product; track $index) { }-->
-                    <app-shop-item></app-shop-item>
-                
-               </ng-container>
+                @for (item of product; track $index) { 
+            <ng-container>
+                <app-shop-item class="product-item col-lg-4 col-md-6" [Product]="item"></app-shop-item>
+            </ng-container>
+        }
             </div>
         </section>
     </div>

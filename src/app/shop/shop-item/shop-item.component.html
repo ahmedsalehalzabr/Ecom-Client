@@ -1,15 +1,17 @@
-<div class="product-item col-lg-4 col-md-6">
+
     <div class="card h-100">
-        <img src="" alt="" class="image">
+        <img src="https://localhost:7184/{{Product.photos[0].imageName}}" alt="" class="image">
         <div class="card-body">
             <div class="thumbnails mb-3">
-                <img src="" alt="" class="thumbnail-img small-img">
+                @for (item of Product.photos; track $index) {
+                <img src="https://localhost:7184/{{item.imageName}}" alt="" class="thumbnail-img small-img">
+                }
             </div>
-            <h5 class="card-title">Lorem, ipsum dolor.</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt iure odit quae.</p>
+            <h5 class="card-title">{{Product.name}}</h5>
+            <p class="card-text">{{Product.description}}</p>
             <p class="price">
-                <span class="old-price">{{1000|currency}}</span>
-                {{900|currency}}
+                <span class="old-price">{{Product.oldPrice|currency}}</span>
+                {{Product.newPrice|currency}}
             </p>
             <div class="rating mb-3">
 
@@ -27,4 +29,4 @@
             </div>
         </div>
     </div>
-    </div>
+    
