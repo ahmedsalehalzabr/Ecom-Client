@@ -1,10 +1,12 @@
 export interface IProduct {
-    name: string
-    description: string
-    newPrice: number
-    oldPrice: number
-    photos: IPhoto[]
-    categoryName: string
+  id:number
+  name: string
+  description: string
+  newPrice: number
+  oldPrice: number
+  photos: IPhoto[]
+  categoryName: string
+  rating?:number
   }
   
   export interface IPhoto {
