@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
 import { ShopService } from './shop.service';
 import { IPagnation } from '../shared/Models/Pagnation';
 import { IProduct } from '../shared/Models/Product';
@@ -58,11 +58,19 @@ OnSearch(Search:string) {
   this.getAllProduct()
 }
 
+@ViewChild('search') searchInput:ElementRef;
+@ViewChild('SortSelected') selected:ElementRef;
+
 //Rest all value
 ResetValue(){
-this.search=""
-this.SortSelected=""
-this.CategoryId=0
+this.search="";
+this.SortSelected = this.SortingOption[0].value;
+this.CategoryId=0;
+
+this.searchInput.nativeElement.value = '';
+
+this.selected.nativeElement.selectedIndex = 0;
+
 this.getAllProduct()
 
 }
