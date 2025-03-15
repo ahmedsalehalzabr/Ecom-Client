@@ -21,7 +21,7 @@ export class ShopComponent implements OnInit{
       this.getCategory();
   }
 getAllProduct(){
-  this.shopService.getProduct(this.CategoryId,this.SortSelected).subscribe({
+  this.shopService.getProduct(this.CategoryId,this.SortSelected,this.search).subscribe({
     next:((value:IPagnation)=> {
           this.product=value.data
     })
@@ -50,4 +50,21 @@ SortingByPrice(sort:Event){
 this.SortSelected=(sort.target as HTMLInputElement).value
 this.getAllProduct()
 }
+
+//filtering by wprd
+search:string
+OnSearch(Search:string) {
+  this.search=Search
+  this.getAllProduct()
+}
+
+//Rest all value
+ResetValue(){
+this.search=""
+this.SortSelected=""
+this.CategoryId=0
+this.getAllProduct()
+
+}
+
 }
