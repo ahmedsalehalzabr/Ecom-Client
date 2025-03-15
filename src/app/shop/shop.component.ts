@@ -3,6 +3,7 @@ import { ShopService } from './shop.service';
 import { IPagnation } from '../shared/Models/Pagnation';
 import { IProduct } from '../shared/Models/Product';
 import { ICateogry } from '../shared/Models/Category';
+import { ProductParam } from '../shared/Models/ProductParam';
 
 @Component({
   selector: 'app-shop',
@@ -12,20 +13,28 @@ import { ICateogry } from '../shared/Models/Category';
 export class ShopComponent implements OnInit{
   product:IProduct[];
   Category: ICateogry[];
-  CategoryId:number;
-  SortSelected:string
+  TotalCount:number
+  ProductParam =new ProductParam();
 
   constructor(private shopService:ShopService){}
   ngOnInit(): void {
+    this.ProductParam.SortSelected = this.SortingOption[0].value;
       this.getAllProduct();
       this.getCategory();
   }
 getAllProduct(){
-  this.shopService.getProduct(this.CategoryId,this.SortSelected,this.search).subscribe({
+  this.shopService.getProduct(this.ProductParam).subscribe({
     next:((value:IPagnation)=> {
-          this.product=value.data
+          this.product=value.data;
+          this.TotalCount=value.totalCount
+          this.ProductParam.pageNumber=value.pageNumber
+          this.ProductParam.pageSize=value.pageSize
     })
   })
+}
+OnChangePage(event:any){
+this.ProductParam.pageNumber=event
+this.getAllProduct()
 }
 
 getCategory() {
@@ -36,7 +45,7 @@ getCategory() {
   });
 }
 SelectedId(categoryid:number){
-  this.CategoryId=categoryid
+  this.ProductParam.CategoryId=categoryid
   this.getAllProduct();
 }
 
@@ -47,14 +56,13 @@ SortingOption=[
   {name:'Price:max-min',value:'PriceDce'}
 ]
 SortingByPrice(sort:Event){
-this.SortSelected=(sort.target as HTMLInputElement).value
+this.ProductParam.SortSelected=(sort.target as HTMLInputElement).value
 this.getAllProduct()
 }
 
 //filtering by wprd
-search:string
 OnSearch(Search:string) {
-  this.search=Search
+  this.ProductParam.search=Search
   this.getAllProduct()
 }
 
@@ -63,9 +71,9 @@ OnSearch(Search:string) {
 
 //Rest all value
 ResetValue(){
-this.search="";
-this.SortSelected = this.SortingOption[0].value;
-this.CategoryId=0;
+this.ProductParam.search="";
+this.ProductParam.SortSelected = this.SortingOption[0].value;
+this.ProductParam.CategoryId=0;
 
 this.searchInput.nativeElement.value = '';
 
