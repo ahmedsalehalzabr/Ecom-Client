@@ -43,12 +43,11 @@
         }
             </div>
             <div class="d-flex justify-content-center align-items-center mt-5">
-                <pagination
-                [itemsPerPage]="3"
-                 [totalItems]="TotalCount"
-                 (pageChanged)="OnChangePage($event.page)"
-                 [boundaryLinks]="true"
-                 ></pagination>
+             <app-pagnation
+             [pageSize]="ProductParam.pageSize"
+             [totalCount]="TotalCount"
+             (pageChanged)="OnChangePage($event)"
+             ></app-pagnation>
             </div>
         </section>
     </div>
