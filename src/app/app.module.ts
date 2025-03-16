@@ -13,7 +13,6 @@ import { ProductDetailsComponent } from './shop/product-details/product-details.
 @NgModule({
   declarations: [
     AppComponent,
-    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
