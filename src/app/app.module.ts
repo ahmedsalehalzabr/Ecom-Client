@@ -9,6 +9,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ShopModule } from './shop/shop.module';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ProductDetailsComponent } from './shop/product-details/product-details.
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    ShopModule
+    HomeModule
   ],
   providers: [
     provideClientHydration(),
