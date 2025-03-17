@@ -9,6 +9,8 @@ const routes: Routes = [
   {path:'shop',loadChildren:()=> import('./shop/shop.module')
     .then(m=>m.ShopModule)
   },
+  {path:'product-details/:id',component:ProductDetailsComponent},
+
   {path: '**',redirectTo:'',pathMatch:'full'}
 ];
 
