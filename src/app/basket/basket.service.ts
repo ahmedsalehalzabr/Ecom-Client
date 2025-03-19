@@ -18,11 +18,14 @@ export class BasketService {
   GetBasket(id: string) {
     return this.http.get(this.BaseURL + 'Baskets/get-basket-item/' + id).pipe(
       map((value: IBasket) => {
+        
         if (value && value.id) {
           this.basketSource.next(value);
           console.log(value);
+          return value;
         } else {
           console.error('Failed to load basket or basket is empty');
+          return null;
         }
       })
     );
